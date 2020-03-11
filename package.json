@@ -1,0 +1,27 @@
+{
+  "name": "k6-faker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "pretest": "webpack",
+    "test": "k6 run ./dist/test.main.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.8.7",
+    "@babel/preset-env": "^7.8.7",
+    "babel-loader": "^8.0.6",
+    "casual": "^1.6.2",
+    "core-js": "^3.6.4",
+    "faker": "^4.1.0",
+    "k6": "^0.0.0",
+    "webpack": "^4.42.0"
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.3.11"
+  },
+  "sideEffects": false
+}
