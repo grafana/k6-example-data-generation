@@ -1,6 +1,13 @@
+> ### ⚠️ Work in progress
+
 # example-data-generation
 
 This repository contains an example of how to utilise faker and k6 to perform load testing against a single endpoint with generated data.
+
+## Content
+- [Background](#background)
+  - [Scenario](#scenario)
+  - [Goals](#goals)
 
 ## Background 
 To make this example useful, let's provide some background as to what this example is aiming to show us.
