@@ -1,28 +1,42 @@
-import http from 'k6/http';
 import { sleep } from 'k6';
+import http from 'k6/http';
 import { Rate } from 'k6/metrics';
+
 import { generateSubscriber } from './subscriber';
 
-const failRate = new Rate('failed requests');
+const urls = {
+    form: 'https://httpbin.org/anything/form',
+    submit: 'https://httpbin.org/anything/form/subscribe',
+};
+
+const formFailRate = new Rate('failed form fetches');
+const submitFailRate = new Rate('failed form submits');
 
 export const options = {
-  vus: 3,
+  vus: 300,
   duration: '10s',
   thresholds: {
-    'failed requests': ['rate<0.1'],
+    'failed form submits': ['rate<0.1'],
+    'failed form fetches': ['rate<0.1'],
     'http_req_duration': ['p(95)<400']
   }
 };
 
-export default function() {
-    const person = generateSubscriber();
-    console.log(JSON.stringify(person));
-    
-    const res = http.post(
-        'https://httpbin.org/anything/subscribe',
-        JSON.stringify(person)
-    );
+const getForm = () => {
+    const formResult = http.get(urls.form);
+    formFailRate.add(formResult.status !== 200);
+}
 
-    failRate.add(res.status !== 200);
+const submitForm = () => {
+    const person = generateSubscriber();    
+    const payload = JSON.stringify(person);
+    
+    const submitResult = http.post(urls.submit, payload);
+    submitFailRate.add(submitResult.status !== 200);
+}
+
+export default function() {
+    getForm();
+    submitForm();
     sleep(1);
 }
