@@ -4,9 +4,10 @@ import { Rate } from 'k6/metrics';
 
 import { generateSubscriber } from './generators/subscriber';
 
+const baseUrl = 'https://httpbin.test.loadimpact.com/anything';
 const urls = {
-    form: 'https://httpbin.org/anything/form',
-    submit: 'https://httpbin.org/anything/form/subscribe',
+  form: `${baseUrl}/form`,
+  submit: `${baseUrl}/form/subscribe`,
 };
 
 const formFailRate = new Rate('failed form fetches');
