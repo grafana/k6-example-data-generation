@@ -13,7 +13,8 @@ module.exports = {
         ]
     },
     stats: {
-        colors: true
+        colors: true,
+        warnings: false
     },
     target: "web",
     externals: /k6(\/.*)?/,

@@ -2,7 +2,7 @@ import { sleep } from 'k6';
 import http from 'k6/http';
 import { Rate } from 'k6/metrics';
 
-import { generateSubscriber } from './generators/subscriber';
+import { generateSubscriber } from './subscriber';
 
 const urls = {
     form: 'https://httpbin.org/anything/form',
