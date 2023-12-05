@@ -1,0 +1,23 @@
+name: Main Workflow
+on: [push]
+jobs:
+  build:
+    name: Run k6 test
+    runs-on: ubuntu-latest
+    services:
+      httpbin:
+        image: grafana/k6-httpbin:v0.8.4
+        ports:
+          - 8080:8080
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18     
+      - run: npm ci
+      - run: npm run pretest
+      - name: Run k6 local test
+        uses: grafana/k6-action@v0.3.1
+        with:
+          filename: dist/test.main.js
+          flags: -e BASE_URL=http://localhost:8080
