@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     services:
       httpbin:
-        image: grafana/k6-httpbin:v0.8.4
+        image: grafana/k6-httpbin:v0.9.0@sha256:57636c59e6f5ba54df82da08365f916c6fceb233ded050d9947e12337e34dcf5
         ports:
           - 8080:8080
     steps:
