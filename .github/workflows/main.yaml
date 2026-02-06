@@ -6,18 +6,18 @@ jobs:
     runs-on: ubuntu-latest
     services:
       httpbin:
-        image: grafana/k6-httpbin:v0.8.4
+        image: grafana/k6-httpbin:v0.8.4@sha256:c6c1b6afafc1639a2e751a794728bfe50b9efa56eba1980ef121eedc9fdd9f11
         ports:
           - 8080:8080
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: 18     
       - run: npm ci
       - run: npm run pretest
       - name: Run k6 local test
-        uses: grafana/k6-action@v0.3.1
+        uses: grafana/k6-action@e4714b734f2b0afaabeb7b4a69142745548ab9ec # v0.3.1
         with:
           filename: dist/test.main.js
           flags: -e BASE_URL=http://httpbin:8080
