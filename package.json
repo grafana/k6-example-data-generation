@@ -2,7 +2,7 @@
   "name": "k6-faker",
   "version": "1.0.0",
   "engines": {
-    "node": "18"
+    "node": "24"
   },
   "description": "",
   "main": "index.js",
