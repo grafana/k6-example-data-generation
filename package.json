@@ -1,6 +1,7 @@
 {
   "name": "k6-faker",
   "version": "1.0.0",
+  "packageManager": "npm@10.9.2",
   "engines": {
     "node": "18"
   },
